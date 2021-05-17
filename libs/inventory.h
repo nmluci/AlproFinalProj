@@ -11,11 +11,12 @@
 
     extern void initStorage();
     extern void showList();
+    extern void showCart(items* cart);
     extern int checkout(items* cart);
-    extern void removeItem(char* name);
     extern void appendItem(char* name, int price, unsigned qty);
-    extern void buyItem(items* cart, char* name);
-    extern void returnItem(items* cart, char* name); 
+    extern void removeItem(char* name);
+    extern void buyItem(items* cart, char* name, int sum);
+    extern void returnItem(items* cart, char* name, int sum); 
     static void addItem(char* data);
     static void getItemInfo(char* name);
     static void updateStorage();

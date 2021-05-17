@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <conio.h>
 #include "custServices.h"
 
 member memberList[100];
@@ -16,12 +17,93 @@ void initMembership() {
     }
 }
 
-void usePoint(char* name, int used) {
+void manageMembership() {
+    char* name = calloc(255, sizeof(char));
+    int opt = -1;
+    printf("Enter Your Name: ");
+    fflush(stdin);
+    gets(name);
     int hashVal = isMember(name);
-    if (hashVal == -1) printf("Not a member (yet)!");
+
+    while (opt != 4) {
+        printf("Membership Counter=--\n");
+        printf("[1] Check Status\n");
+        printf("[2] Top Up\n");
+        printf("[3] Register as Member\n");
+        printf("[4] Revoke Membership\n");
+        printf("Enter your choices: ");
+        scanf("%d", &opt);
+
+        switch (opt) {
+            case 1:
+                if (hashVal == -1) printf("Please Sign Up As Our Member Now!");
+                else {
+                    printf("Name: %s\n", memberList[hashVal]->name);
+                    printf("Points: %d\n", memberList[hashVal]->points);
+                }
+                break;
+            case 2:
+                if (hashVal == -1) printf("Please Sign Up As Our Member Now!");
+                else {
+                    printf("Enter the amount: ");
+                    scanf("%d", &opt);
+                    addPoint(name, opt);
+                }
+                break;
+            case 3:
+                addMember(name);
+                break;
+            case 4:
+                revokeMember(name);
+                break;
+            case 5:
+                return;
+            default:
+                printf("Please enter the correct option!\n");
+                break;
+        }
+        getch();
+        system("cls");
+    }
+}
+
+int payment(char* name, int amount) {
+    int opt = 0;
+    printf("Payment:\n");
+    printf("[1] Cash: SCH %d\n", amount);
+    printf("[2] Point: %d Points\n", amount/100);
+    printf("How do you want to pay? ");
+    scanf("%d", &opt);
+    if (opt == 1) {
+        printf("Enter the amount of cash: ");
+        scanf("%d", &opt);
+        if (opt > amount) {
+            printf("Your Charges: %d\n", opt - amount);
+            return 0;
+        } else if (opt == amount) return 0;
+        else return -1;
+    } else {
+        opt = usePoint(name, amount/100);
+        if (opt == -1) {
+            printf("Pembayaran gagal!");
+            return -1;
+        }
+    }
+
+}
+
+int usePoint(char* name, int used) {
+    int hashVal = isMember(name);
+    if (hashVal == -1)  {
+        printf("Not a member (yet)!");
+        return -1;
+    }
     else {
         int temp = memberList[hashVal]->points;
-        if (temp - used <= 0) printf("Not Enough Point!");
+        if (temp - used <= 0) {
+            printf("Not Enough Point!");
+            return -1;
+        }
         else memberList[hashVal]->points -= used;
     }
 }
@@ -32,7 +114,7 @@ void addPoint(char* name, int added) {
     else memberList[hashVal]->points += added;
 }
 
-void registerMember(char* name) {
+static void registerMember(char* name) {
     char* data = calloc(255, sizeof(char));
     snprintf(data, 255, "%s#0", name);
     addMember(data);
@@ -41,7 +123,7 @@ void registerMember(char* name) {
     free(data);
 }
 
-void revokeMember(char* name) {
+static void revokeMember(char* name) {
     int hashVal = isMember(name);
     if (hashVal == -1) printf("Not a member!");
     else {

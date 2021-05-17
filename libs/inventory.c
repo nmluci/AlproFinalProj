@@ -13,6 +13,12 @@ void initStorage() {
     fclose(inv);
 }
 
+void showCart(items* cart) {
+    for (int i=0; i<50; i++) {
+        if (cart[i]) printf("<%d> %s x%d\n", i, cart[i]->name, cart[i]->stocks);
+    }
+}
+
 void showList() {
     for (int i=0; i<255; i++) {
         if (Inventory[i]) getItemInfo(Inventory[i]->name);
@@ -22,11 +28,14 @@ void showList() {
 int checkout(items* cart) {
     unsigned bought = 0;
     
+    printf("--==Shopping Cart==--");
     for (int i=0; i<50; i++) {
         if (cart[i]) {
-            bought = cart[i]->price * cart[i]->stocks;
+            printf("%s x%d\n", cart[i]->name, cart[i]->stocks);
+            bought += cart[i]->price * cart[i]->stocks;
         }
     }
+    printf("Total: %ju\n", bought);
     return bought;
 }
 
@@ -36,39 +45,53 @@ void removeItem(char* name) {
     updateStorage();
 }
 
-void buyItem(items* cart, char* name) {
+void buyItem(items* cart, char* name, int sum) {
     int hashVal = generateHash(name);
     if (!Inventory[hashVal]) printf("Items not yet available!\n");
     else {
+        if (Inventory[hashVal]->stocks <= sum) {
+            printf("Hanya tersedia %d!\n", Inventory[hashVal]->stocks);
+            sum = Inventory[hashVal]->stocks;
+        }
         for (int i=0; i<50; i++) {
             if (cart[i]) {
-                if (!strcmp(cart[i]->name, name)) cart[i]->stocks++;
+                if (!strcmp(cart[i]->name, name)) {
+                    cart[i]->stocks+=sum;
+                }
                 else continue;
+                break;
             } else {
-                cart[i] = Inventory[hashVal];
-                cart[i]->stocks = 1;
+                cart[i] = malloc(sizeof(struct items_t));
+                cart[i]->name = strdup(Inventory[hashVal]->name);
+                cart[i]->price = Inventory[hashVal]->price;
+                cart[i]->stocks = sum;
+                printf("%d, %d\n", Inventory[hashVal], cart[i]);
+                break;
             }
         }
+        Inventory[hashVal]->stocks -= (int)sum;
     }
 }
 
 void appendItem(char* name, int price, unsigned qty) {
     char* data = calloc(255, sizeof(char));
-    snprintf(data, 255, "%s#%d%ju", name, price, qty);
+    snprintf(data, 255, "%s#%d#%u", name, price, qty);
     addItem(data);
     updateStorage();
     getItemInfo(name);
     free(data);
 }
 
-void returnItem(items* cart, char* name) {
+void returnItem(items* cart, char* name, int sum) {
+    int hashVal = generateHash(name);
+    Inventory[hashVal]->stocks += sum;
     for (int i=0; i<50; i++) {
         if (cart[i] && !strcmp(cart[i]->name, name)) {
-            cart[i] = NULL;
+            if (cart[i]->stocks == sum) cart[i] = NULL;
+            else cart[i] -= sum;
         }
     }
 }
-
 
 static void updateStorage() {
     FILE* inv = fopen(invFile, "w+");
@@ -97,6 +120,7 @@ static void addItem(char* data) {
     newItem->price = atoi(strtok(NULL, "#"));
     newItem->stocks = (unsigned)atoi(strtok(NULL, "#"));
     if (!Inventory[hashVal]) Inventory[hashVal] = newItem;
+    printf("%s %d %ju\n", Inventory[hashVal]->name, Inventory[hashVal]->price, Inventory[hashVal]->stocks);
 }
 
 static int generateHash(char* name) {
