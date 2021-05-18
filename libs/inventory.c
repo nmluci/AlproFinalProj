@@ -32,15 +32,14 @@ void manageStorage() {
         switch (opt) {
             case 1:
                 printf("Item Name: ");
-                scanf("%s", name);
+                fflush(stdin);
+                gets(buff);
                 printf("Price: ");
                 scanf("%u", &opt);
                 printf("Qty: ");
                 scanf("%u", &qty);
-                snprintf(buff, 255, "%s#%u#%u", name, opt, qty);
-                addItem(buff);
+                appendItem(buff, opt, qty);
                 updateStorage();
-                // appendItem(name, opt, qty);
                 break;
             case 2:
                 printf("Item name: ");
@@ -137,6 +136,7 @@ void returnItem(items* cart, char* name, unsigned sum) {
 static void appendItem(char* name, unsigned price, unsigned qty) {
     char* data = calloc(255, sizeof(char));
     snprintf(data, 255, "%s#%u#%u", name, price, qty);
+    printf("%s, %u, %u\n%s\n", name, price, qty, data);
     addItem(data);
     updateStorage();
     getItemInfo(name);

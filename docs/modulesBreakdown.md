@@ -110,4 +110,4 @@ b. if false, continue
 3. If exist a data, calculate the cost as the amount bought times prices
 4. return the cost
 
-- nmluci
+by. [nmluci](https://github.com/nmluci)
