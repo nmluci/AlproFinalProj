@@ -10,10 +10,24 @@
 ## Simping a coffee.
 ### Jokes aside, Its simulate a coffee shop with cashier, storage, and also most importantly... "The Membership".
 
-# Feature
-## Tell me more about this program? Fine.
+# Functionalities
+Tell me more about this program? Fine.
 
-## It's Consist of 2 Parts
+It's Consist of 2 Parts
 
-## Customer Services
-### Here lies 
+| Customer Stuff   | Backend Stuff          |
+-------------------|-------------------------
+| Customer's Order | Inventory Management   |
+| Payment          | Membership Management  |
+| *Membership      |                        |
+
+[Click Here For More In-depth Stuff Documentation](./docs/modulesBreakdown.md)
+(*) yes its also implemented
+
+# Implemented Concepts
+- Modularity (Obviously)
+- Basic File IO
+- CRUD
+
+# Contributors
+[Fuyuna](https://github.com/nmluci) [Marcel](https://github.com/M-2002) [Spyglare(?)](https://github.com/spyglare)
