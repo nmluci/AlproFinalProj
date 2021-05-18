@@ -1,31 +1,37 @@
-# KisatenSim(p)
-AKA Cafe Simulator
-# Base Design
-## Simulator Cafe yang dimana dapat menangani transaksi, keanggotaan (Mmber), dan inventaris (inventory)
+<h1 align="center">Kissaten Simulator</h1>
+<img src="./docs/title.png"> 
+<h2 align="center">Our Basic Algorithm and Programming Course's Final Project</h2>
+</br>
 
-# Codebase Platform
-## [Github](github.com/nmluci/Supermarket) 
+# Ethymologies
+## SchneeKatze literally means Snow Cat in German, Whlle Kissaten (our repo's name) means some sort of Cafe in Japanese.
 
-# Modules
-## Inventory
-### Client Side
-1. Buy Item
-2. Return Item
-3. Cekout
-4. Check kart
-### Server Side
-1. Et Items
-2. Remove items
-3. Update Listing
-4. Show Listing
+# What is this?
+This is a digital object called "Za Programs" which tries to mimic a Cafe 
 
-## Customer Service (CustServices)
-### Client Side
-1. Payment
-2. Register as Member
-3. Withdraw from Member
-4. Get Member Stats
-### Server Side
-1. Load Member
-2. Add Member
-3. Revoke Member
+# What This Program Actually DO?
+## Simping a coffee.
+Jokes aside, Its simulate a coffee shop with cashier, storage, and also most importantly... "The Membership".
+
+# Functionalities
+Tell me more about this program? Fine.
+
+It's Consist of 2 Parts
+
+| Customer Stuff   | Backend Stuff          |
+-------------------|-------------------------
+| Customer's Order | Inventory Management   |
+| Payment          | Membership Management  |
+| *Membership      |                        |
+
+[Click Here For More In-depth Stuff Documentation](./docs/modulesBreakdown.md)
+
+(*) yes its also has been implemented
+
+# Implemented Concepts
+- Modularity (Obviously)
+- Basic File IO
+- CRUD
+
+# Contributors
+[Fuyuna](https://github.com/nmluci) [Marcel](https://github.com/M-2002) [Spyglare(?)](https://github.com/spyglare)
