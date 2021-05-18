@@ -5,7 +5,7 @@
     struct items_t {
         char* name;
         unsigned price;
-        int stocks;
+        unsigned stocks;
     };
     typedef struct items_t* items;
 
@@ -14,11 +14,11 @@
     extern int showList();
     extern void showCart(items* cart);
     extern int checkout(items* cart);
-    extern void appendItem(char* name, int price, unsigned qty);
     extern void removeItem(char* name);
-    extern void buyItem(items* cart, char* name, int sum);
-    extern void returnItem(items* cart, char* name, int sum); 
+    extern void buyItem(items* cart, char* name, unsigned sum);
+    extern void returnItem(items* cart, char* name, unsigned sum); 
     static void addItem(char* data);
+    static void appendItem(char* name, unsigned price, unsigned qty);
     static void getItemInfo(char* name);
     static void updateStorage();
     static int generateHash(char* name);
