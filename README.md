@@ -1,7 +1,7 @@
-# SupermarketSim
-AKA Supermarket Simulator
+# KisatenSim(p)
+AKA Cafe Simulator
 # Base Design
-## Simulator Supermarket yang dimana dapat menangani transaksi, keanggotaan (Mmber), dan inventaris (inventory)
+## Simulator Cafe yang dimana dapat menangani transaksi, keanggotaan (Mmber), dan inventaris (inventory)
 
 # Codebase Platform
 ## [Github](github.com/nmluci/Supermarket) 
