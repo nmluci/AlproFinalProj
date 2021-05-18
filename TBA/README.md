@@ -1,16 +1,6 @@
-<style>
-    .cxBold {
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .cx {
-        text-align: center
-    }
-</style>
-<h1 class="cxBold">Kisaten Simulator</h1>
+<h1 align="center">Kisaten Simulator</h1>
 <img src="./docs/title.png"> 
-<h2 class="cxBold">Our Basic Algorithm and Programming Course's Final Project</h3>
+<h2 align="center">Our Basic Algorithm and Programming Course's Final Project</h2>
 </br>
 
 # Ethymologies
