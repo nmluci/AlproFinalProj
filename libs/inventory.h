@@ -10,7 +10,8 @@
     typedef struct items_t* items;
 
     extern void initStorage();
-    extern void showList();
+    extern void manageStorage();
+    extern int showList();
     extern void showCart(items* cart);
     extern int checkout(items* cart);
     extern void appendItem(char* name, int price, unsigned qty);

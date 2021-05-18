@@ -5,18 +5,6 @@
 #include "libs\custServices.h"
 #include "libs\inventory.h"
 
-// int main() {
-//   initMembership();
-//   items userCart[50] = {0}; // 50 stack items a.k.a 50 jenis items
-//   initStorage();
-//   showList();
-//   removeItem("tamago");
-//   appendItem("Weedo", 15000, 420);
-//   buyItem(userCart, "Weedo");
-//   unsigned paid = checkout(userCart);
-//   printf("%ju\n", paid);
-// }
-
 int main(int argc, char* argv[]) {
   int opt = -1;
   char* buff = calloc(255, sizeof(char));
@@ -24,8 +12,8 @@ int main(int argc, char* argv[]) {
   initMembership();
   initStorage();
 
-  printf("Welcome to SchneeKatze's Shop!\n");
   while (opt != 9) {
+    printf("Welcome to SchneeKatze's Shop!\n");
     printf("[1] Buy an Item\n");
     printf("[2] Return an Item\n");
     printf("[3] Check Shopping Cart\n");
@@ -37,7 +25,10 @@ int main(int argc, char* argv[]) {
 
     switch (opt) {
       case 1:
-        showList();
+        if (showList()) {
+          printf("No DATA!\n");
+          break;
+        }
         printf("Enter the name of product to buy: ");
         fflush(stdin);
         gets(buff);
@@ -63,7 +54,7 @@ int main(int argc, char* argv[]) {
       case 5:
         int cost = checkout(userCart);
         if (!cost) {
-          printf("There's no pending cart!");
+          printf("There's no pending cart!\n");
           break;
         }
         printf("Enter your name: ");
@@ -73,45 +64,16 @@ int main(int argc, char* argv[]) {
         for (int i=0; i<50; i++) userCart[i] = 0;
         break;
       case 6:
+        printf("Thanks for coming :3 \n");
         exit(0);
       case 99:
-        unsigned qty = 0;
-        int price = 0;
-        showList();
-        printf("[1] Add Stocks\n");
-        printf("[2] Remove Item\n");
-        printf("[3] Back\n");
-        printf("> ");
-        scanf("%d", &opt);
-
-        switch (opt) {
-          case 1:
-            printf("Item Name: ");
-            fflush(stdin);
-            gets(buff);
-            printf("Price: ");
-            scanf("%d", &price);
-            printf("Qty: ");
-            scanf("%ju", &qty);
-            appendItem(buff, price, qty);
-            break;
-          case 2:
-            printf("Item name: ");
-            fflush(stdin);
-            gets(buff);
-            removeItem(buff);
-            break;
-          case 3:
-            break;
-          default:
-            break;
-        }
+        manageStorage();
         break;
       default:
-        printf("Not Implemented yet!");
+        printf("Not Implemented yet!\n");
     }
-    // getch();
-    // system("cls");
+    getch();
+    system("cls");
   }
 
 }

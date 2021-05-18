@@ -23,27 +23,27 @@ void manageMembership() {
     printf("Enter Your Name: ");
     fflush(stdin);
     gets(name);
-    int hashVal = isMember(name);
 
     while (opt != 4) {
+        int hashVal = isMember(name);
         printf("Membership Counter=--\n");
         printf("[1] Check Status\n");
         printf("[2] Top Up\n");
         printf("[3] Register as Member\n");
         printf("[4] Revoke Membership\n");
+        printf("[5] Back\n");
         printf("Enter your choices: ");
         scanf("%d", &opt);
 
         switch (opt) {
             case 1:
-                if (hashVal == -1) printf("Please Sign Up As Our Member Now!");
+                if (hashVal == -1) printf("Please Sign Up As Our Member Now!\n");
                 else {
-                    printf("Name: %s\n", memberList[hashVal]->name);
-                    printf("Points: %d\n", memberList[hashVal]->points);
+                    memberStatus(name);
                 }
                 break;
             case 2:
-                if (hashVal == -1) printf("Please Sign Up As Our Member Now!");
+                if (hashVal == -1) printf("Please Sign Up As Our Member Now!\n");
                 else {
                     printf("Enter the amount: ");
                     scanf("%d", &opt);
@@ -51,7 +51,7 @@ void manageMembership() {
                 }
                 break;
             case 3:
-                addMember(name);
+                registerMember(name);
                 break;
             case 4:
                 revokeMember(name);
@@ -64,6 +64,7 @@ void manageMembership() {
         }
         getch();
         system("cls");
+        updateMembership();
     }
 }
 
@@ -85,7 +86,7 @@ int payment(char* name, int amount) {
     } else {
         opt = usePoint(name, amount/100);
         if (opt == -1) {
-            printf("Pembayaran gagal!");
+            printf("Pembayaran gagal!\n");
             return -1;
         }
     }
@@ -95,13 +96,13 @@ int payment(char* name, int amount) {
 int usePoint(char* name, int used) {
     int hashVal = isMember(name);
     if (hashVal == -1)  {
-        printf("Not a member (yet)!");
+        printf("Not a member (yet)!\n");
         return -1;
     }
     else {
         int temp = memberList[hashVal]->points;
         if (temp - used <= 0) {
-            printf("Not Enough Point!");
+            printf("Not Enough Point!\n");
             return -1;
         }
         else memberList[hashVal]->points -= used;
@@ -110,7 +111,7 @@ int usePoint(char* name, int used) {
 
 void addPoint(char* name, int added) {
     int hashVal = isMember(name);
-    if (hashVal == -1) printf("Not a member (yet)!");
+    if (hashVal == -1) printf("Not a member (yet)!\n");
     else memberList[hashVal]->points += added;
 }
 
@@ -125,7 +126,7 @@ static void registerMember(char* name) {
 
 static void revokeMember(char* name) {
     int hashVal = isMember(name);
-    if (hashVal == -1) printf("Not a member!");
+    if (hashVal == -1) printf("Not a member!\n");
     else {
         memberList[hashVal] = NULL;
         updateMembership();
@@ -149,7 +150,7 @@ static void addMember(char* data) {
 
 static void memberStatus(char* name) {
     int hashVal = isMember(name);
-    if (hashVal == -1) printf("Not a member (yet)!");
+    if (hashVal == -1) printf("Not a member (yet)!\n");
     printf("┬─ %s\n├ ID: %d\n└ Point: %d\n", 
             memberList[hashVal]->name,
             hashVal,
@@ -162,7 +163,7 @@ static void updateMembership() {
     for (int i=0; i<100; i++) {
         if (!memberList[i]) continue;
         member temp = memberList[i];
-        fprintf(mbr, "%s#%d", temp->name, temp->points);
+        fprintf(mbr, "%s#%d\n", temp->name, temp->points);
     }
     fclose(mbr);
 }

@@ -13,16 +13,62 @@ void initStorage() {
     fclose(inv);
 }
 
+void manageStorage() {
+    unsigned qty = 0;
+    int opt;
+    char* name = calloc(255, sizeof(char));
+
+    system("cls");
+    printf("SchneeKatze's Shop Admin Panel\n");
+    showList();
+    printf("[1] Add Stocks\n");
+    printf("[2] Remove Item\n");
+    printf("[3] Sync Storage\n");
+    printf("[4] Back\n");
+    printf("> ");
+    scanf("%d", &opt);
+
+    switch (opt) {
+        case 1:
+            printf("Item Name: ");
+            fflush(stdin);
+            gets(name);
+            printf("Price: ");
+            scanf("%d", &opt);
+            printf("Qty: ");
+            scanf("%ju", &qty);
+            appendItem(name, opt, qty);
+            break;
+        case 2:
+            printf("Item name: ");
+            fflush(stdin);
+            gets(name);
+            removeItem(name);
+            break;
+        case 3:
+            updateStorage();
+            break;
+        case 4:
+        default:
+        break;
+    }
+}
+
 void showCart(items* cart) {
     for (int i=0; i<50; i++) {
         if (cart[i]) printf("<%d> %s x%d\n", i, cart[i]->name, cart[i]->stocks);
     }
 }
 
-void showList() {
+int showList() {
+    int ctr = 0;
     for (int i=0; i<255; i++) {
-        if (Inventory[i]) getItemInfo(Inventory[i]->name);
+        if (Inventory[i]) {
+            getItemInfo(Inventory[i]->name);
+            ctr++;
+        }
     }
+    return ctr == 0;
 }
 
 int checkout(items* cart) {
@@ -65,7 +111,6 @@ void buyItem(items* cart, char* name, int sum) {
                 cart[i]->name = strdup(Inventory[hashVal]->name);
                 cart[i]->price = Inventory[hashVal]->price;
                 cart[i]->stocks = sum;
-                printf("%d, %d\n", Inventory[hashVal], cart[i]);
                 break;
             }
         }
@@ -74,8 +119,9 @@ void buyItem(items* cart, char* name, int sum) {
 }
 
 void appendItem(char* name, int price, unsigned qty) {
+    char* temp = strdup(name);
     char* data = calloc(255, sizeof(char));
-    snprintf(data, 255, "%s#%d#%u", name, price, qty);
+    snprintf(data, 255, "%s#%d#%u", temp, price, qty);
     addItem(data);
     updateStorage();
     getItemInfo(name);
@@ -120,7 +166,6 @@ static void addItem(char* data) {
     newItem->price = atoi(strtok(NULL, "#"));
     newItem->stocks = (unsigned)atoi(strtok(NULL, "#"));
     if (!Inventory[hashVal]) Inventory[hashVal] = newItem;
-    printf("%s %d %ju\n", Inventory[hashVal]->name, Inventory[hashVal]->price, Inventory[hashVal]->stocks);
 }
 
 static int generateHash(char* name) {
