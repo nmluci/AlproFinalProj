@@ -13,9 +13,9 @@ int main(int argc, char* argv[]) {
   initStorage();
 
   while (opt != 9) {
-    printf("Welcome to SchneeKatze's Shop!\n");
-    printf("[1] Buy an Item\n");
-    printf("[2] Return an Item\n");
+    printf("Welcome to SchneeKatze's Cafe!\n");
+    printf("[1] Order a Coffee\n");
+    printf("[2] Cancel an Item\n");
     printf("[3] Check Shopping Cart\n");
     printf("[4] Membership management\n");
     printf("[5] Checkout\n");
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
       case 5:
         int cost = checkout(userCart);
         if (!cost) {
-          printf("There's no pending cart!\n");
+          printf("There's no pending item(s)!\n");
           break;
         }
         printf("Enter your name: ");
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
         manageStorage();
         break;
       default:
-        printf("Not Implemented yet!\n");
+        printf("Wrong Choices :<\n");
     }
     getch();
     system("cls");

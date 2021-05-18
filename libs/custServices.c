@@ -26,7 +26,7 @@ void manageMembership() {
 
     while (opt != 4) {
         int hashVal = isMember(name);
-        printf("Membership Counter=--\n");
+        printf("Membership Counter\n");
         printf("[1] Check Status\n");
         printf("[2] Top Up\n");
         printf("[3] Register as Member\n");
@@ -86,7 +86,7 @@ int payment(char* name, int amount) {
     } else {
         opt = usePoint(name, amount/100);
         if (opt == -1) {
-            printf("Pembayaran gagal!\n");
+            printf("Payment Failed!\n");
             return -1;
         }
     }

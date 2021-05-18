@@ -1,6 +1,6 @@
 #ifndef __CX_CUSTSERV__
     #define __CX_CUSTSERV__
-    #define memberFile "membership.data"
+    #define memberFile "storage\\membership.data"
 
     struct member_t {
         char* name;

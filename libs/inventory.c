@@ -20,7 +20,7 @@ void manageStorage() {
     char* buff = calloc(255, sizeof(char));
     system("cls");
     while (opt != 4) {
-        printf("SchneeKatze's Shop Admin Panel\n");
+        printf("SchneeKatze's Cafe Admin Panel\n");
         showList();
         printf("[1] Add Stocks\n");
         printf("[2] Remove Item\n");
@@ -100,7 +100,7 @@ void buyItem(items* cart, char* name, unsigned sum) {
     if (!Inventory[hashVal]) printf("Items not yet available!\n");
     else {
         if (Inventory[hashVal]->stocks < sum) {
-            printf("Hanya tersedia %u!\n", Inventory[hashVal]->stocks);
+            printf("Only %u Left!\n", Inventory[hashVal]->stocks);
             sum = Inventory[hashVal]->stocks;
         }
         for (int i=0; i<50; i++) {
@@ -155,7 +155,7 @@ static void updateStorage() {
 
 static void getItemInfo(char* name) {
     items obj = Inventory[generateHash(name)];
-    printf("┬─ %s\n├ Rp. %u,00\n└ Qty: %u\n",
+    printf("┬─ %s\n├ SCH %u,00\n└ Qty: %u\n",
             obj->name,
             obj->price,
             obj->stocks);

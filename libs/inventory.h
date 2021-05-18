@@ -1,6 +1,6 @@
 #ifndef __CX_INV__
     #define __CX_INV__
-    #define invFile "inventory.data"
+    #define invFile "storage\\inventory.data"
 
     struct items_t {
         char* name;
