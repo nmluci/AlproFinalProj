@@ -39,7 +39,6 @@ void manageStorage() {
                 printf("Qty: ");
                 scanf("%u", &qty);
                 appendItem(buff, opt, qty);
-                updateStorage();
                 break;
             case 2:
                 printf("Item name: ");
@@ -51,7 +50,9 @@ void manageStorage() {
                 initStorage();
                 break;
             case 4:
+                break;
             default:
+                printf("Enter the correct option!\n");
             break;
         }
     }
@@ -136,7 +137,6 @@ void returnItem(items* cart, char* name, unsigned sum) {
 static void appendItem(char* name, unsigned price, unsigned qty) {
     char* data = calloc(255, sizeof(char));
     snprintf(data, 255, "%s#%u#%u", name, price, qty);
-    printf("%s, %u, %u\n%s\n", name, price, qty, data);
     addItem(data);
     updateStorage();
     getItemInfo(name);

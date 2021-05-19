@@ -10,8 +10,6 @@ member memberList[100];
 void initMembership() {
     char* buff = calloc(255, sizeof(char));
     FILE* mbr = fopen(memberFile, "r+");
-    int ctr = -1;
-
     while (fgets(buff, 255, mbr)) {
         addMember(buff);
     }
@@ -24,8 +22,8 @@ void manageMembership() {
     fflush(stdin);
     gets(name);
 
-    while (opt != 4) {
-        int hashVal = isMember(name);
+    while (opt != 5) {
+        int memberShip = isMember(name);
         printf("Membership Counter\n");
         printf("[1] Check Status\n");
         printf("[2] Top Up\n");
@@ -37,13 +35,13 @@ void manageMembership() {
 
         switch (opt) {
             case 1:
-                if (hashVal == -1) printf("Please Sign Up As Our Member Now!\n");
+                if (memberShip == -1) printf("Please Sign Up As Our Member Now!\n");
                 else {
                     memberStatus(name);
                 }
                 break;
             case 2:
-                if (hashVal == -1) printf("Please Sign Up As Our Member Now!\n");
+                if (memberShip == -1) printf("Please Sign Up As Our Member Now!\n");
                 else {
                     printf("Enter the amount: ");
                     scanf("%d", &opt);
@@ -57,7 +55,7 @@ void manageMembership() {
                 revokeMember(name);
                 break;
             case 5:
-                return;
+                break;
             default:
                 printf("Please enter the correct option!\n");
                 break;
@@ -143,8 +141,8 @@ static void addMember(char* data) {
     char* temp = data;
     int hashVal = 0;
     newMem->name = strdup(strtok(data,"#"));
-    hashVal = generateHash(newMem->name);
     newMem->points = atoi(strtok(NULL, "#"));
+    hashVal = generateHash(newMem->name);
     if (!memberList[hashVal]) memberList[hashVal] = newMem;
 }
 

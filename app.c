@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
   initMembership();
   initStorage();
 
-  while (opt != 9) {
+  while (opt != 6) {
     printf("Welcome to SchneeKatze's Cafe!\n");
     printf("[1] Order a Coffee\n");
     printf("[2] Cancel an Item\n");
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
         break;
       case 6:
         printf("Thanks for coming :3 \n");
-        exit(0);
+        break;
       case 99:
         manageStorage();
         break;
