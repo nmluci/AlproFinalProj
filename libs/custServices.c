@@ -6,7 +6,6 @@
 #include "custServices.h"
 
 member memberList[100];
-
 void initMembership() {
     char* buff = calloc(255, sizeof(char));
     FILE* mbr = fopen(memberFile, "r+");

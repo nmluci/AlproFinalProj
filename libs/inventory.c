@@ -129,7 +129,7 @@ void returnItem(items* cart, char* name, unsigned sum) {
     for (int i=0; i<50; i++) {
         if (cart[i] && !strcmp(cart[i]->name, name)) {
             if (cart[i]->stocks == sum) cart[i] = NULL;
-            else cart[i] -= sum;
+            else cart[i]->stocks -= sum;
         }
     }
 }

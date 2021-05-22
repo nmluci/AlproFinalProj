@@ -14,8 +14,8 @@ int main(int argc, char* argv[]) {
 
   while (opt != 6) {
     printf("Welcome to SchneeKatze's Cafe!\n");
-    printf("[1] Order a Coffee\n");
-    printf("[2] Cancel an Item\n");
+    printf("[1] Make an Order\n");
+    printf("[2] Cancel an Order\n");
     printf("[3] Check Shopping Cart\n");
     printf("[4] Membership management\n");
     printf("[5] Checkout\n");
