@@ -87,7 +87,7 @@ int payment(char* name, int amount) {
             return -1;
         }
     }
-
+    return 0;
 }
 
 int usePoint(char* name, int used) {
@@ -104,6 +104,7 @@ int usePoint(char* name, int used) {
         }
         else memberList[hashVal]->points -= used;
     }
+    return 0;
 }
 
 void addPoint(char* name, int added) {
@@ -139,7 +140,7 @@ static void addMember(char* data) {
     member newMem = malloc(sizeof(struct member_t));
     char* temp = data;
     int hashVal = 0;
-    newMem->name = strdup(strtok(data,"#"));
+    newMem->name = strdup(strtok(temp,"#"));
     newMem->points = atoi(strtok(NULL, "#"));
     hashVal = generateHash(newMem->name);
     if (!memberList[hashVal]) memberList[hashVal] = newMem;

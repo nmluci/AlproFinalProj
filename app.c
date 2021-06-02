@@ -7,6 +7,7 @@
 
 int main(int argc, char* argv[]) {
   int opt = -1;
+  int cost = 0;
   char* buff = calloc(255, sizeof(char));
   items userCart[50] = {0};
   initMembership();
@@ -52,7 +53,7 @@ int main(int argc, char* argv[]) {
         manageMembership();
         break;
       case 5:
-        int cost = checkout(userCart);
+        cost = checkout(userCart);
         if (!cost) {
           printf("There's no pending item(s)!\n");
           break;
