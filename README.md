@@ -34,4 +34,4 @@ It's Consist of 2 Parts
 - CRUD
 
 # Contributors
-[Fuyuna](https://github.com/nmluci) | [Marcel](https://github.com/M-2002) | [Another Marcel](https://github.com/spyglare) | [Diopranata](https://github.com/Diopranata01) | [YuliaDewi](https://github.com/nekoochnlia)
+[Fuyuna](https://github.com/nmluci) | [Marcel](https://github.com/M-2002) | [Yet Another Marcel](https://github.com/spyglare) | [Diopranata](https://github.com/Diopranata01) | [YuliaDewi](https://github.com/nekoochnlia)
