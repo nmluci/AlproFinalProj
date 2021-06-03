@@ -1,5 +1,5 @@
 <h1 align="center">Kissaten Simulator</h1>
-<img src="./docs/title.png"> 
+<img src="./docs/KissatenBanner.png"> 
 <h2 align="center">Our Basic Algorithm and Programming Course's Final Project</h2>
 </br>
 
